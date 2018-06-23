@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KataGildedRose.Tests
+namespace Team.Codium.LegacyTraining.GildedRoseAutomatedRefactoring.Tests
 {
     public class SampleExecution
     {

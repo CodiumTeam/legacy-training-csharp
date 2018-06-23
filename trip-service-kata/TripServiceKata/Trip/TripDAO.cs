@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TripServiceKata.Exception;
+using Team.Codium.LegacyTraining.TripServiceKata.Exception;
 
-namespace TripServiceKata.Trip
+namespace Team.Codium.LegacyTraining.TripServiceKata.Trip
 {
     public class TripDAO
     {

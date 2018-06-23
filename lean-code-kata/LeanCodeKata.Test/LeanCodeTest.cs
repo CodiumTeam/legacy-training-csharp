@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
-namespace LeanCodeKata.Tests
+namespace Team.Codium.LegacyTraining.LeanCodeKata.Tests
 {
     public class LeanCodeTest
     {

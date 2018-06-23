@@ -1,7 +1,7 @@
-﻿using TripServiceKata.Trip;
+﻿using Team.Codium.LegacyTraining.TripServiceKata.Trip;
 using Xunit;
 
-namespace TripServiceKata.Tests
+namespace Team.Codium.LegacyTraining.TripServiceKata.Tests
 {
     public class TripServiceTest
     {

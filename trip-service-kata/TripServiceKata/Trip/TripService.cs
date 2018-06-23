@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using TripServiceKata.Exception;
-using TripServiceKata.User;
+using Team.Codium.LegacyTraining.TripServiceKata.Exception;
+using Team.Codium.LegacyTraining.TripServiceKata.User;
 
-namespace TripServiceKata.Trip
+namespace Team.Codium.LegacyTraining.TripServiceKata.Trip
 {
     public class TripService
     {

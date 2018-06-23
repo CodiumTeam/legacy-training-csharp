@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WeatherKata
+namespace Team.Codium.LegacyTraining.WeatherKata
 {
     interface ForecastService
     {

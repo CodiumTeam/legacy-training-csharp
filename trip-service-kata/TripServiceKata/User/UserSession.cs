@@ -1,6 +1,6 @@
-﻿using TripServiceKata.Exception;
+﻿using Team.Codium.LegacyTraining.TripServiceKata.Exception;
 
-namespace TripServiceKata.User
+namespace Team.Codium.LegacyTraining.TripServiceKata.User
 {
     public class UserSession
     {

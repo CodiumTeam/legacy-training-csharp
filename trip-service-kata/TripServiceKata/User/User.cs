@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TripServiceKata.User
+namespace Team.Codium.LegacyTraining.TripServiceKata.User
 {
     public class User
     {

@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace WeatherKata.Test
+namespace Team.Codium.LegacyTraining.WeatherKata.Test
 {
     public class WeatherKataTest
     {

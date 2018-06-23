@@ -2,7 +2,7 @@
 using System.IO;
 using Xunit;
 
-namespace KataGildedRose.Tests
+namespace Team.Codium.LegacyTraining.GildedRoseAutomatedRefactoring.Tests
 {
     public class GildedRoseTest
     {

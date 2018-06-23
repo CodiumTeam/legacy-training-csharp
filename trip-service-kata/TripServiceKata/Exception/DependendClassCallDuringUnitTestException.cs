@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace TripServiceKata.Exception
+namespace Team.Codium.LegacyTraining.TripServiceKata.Exception
 {
     [Serializable]
     public class DependendClassCallDuringUnitTestException : System.Exception
