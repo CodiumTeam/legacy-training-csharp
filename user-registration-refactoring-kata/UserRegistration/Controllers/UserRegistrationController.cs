@@ -16,16 +16,19 @@ namespace UserRegistration.Controllers
     {
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public User RegisterUser(IFormCollection FormData)
+        public IActionResult RegisterUser(IFormCollection FormData)
         {
+            if (FormData["password"].ToString().Length <= 8){
+                return BadRequest("request is incorrect");
+            }
             var rng = new Random();
-            return new User
+            return Ok(new User
             {
                 Id = rng.Next(1,1000),
                 Name = FormData["name"],
                 Password = FormData["password"],
                 Email = FormData["email"]
-            };
+            });
         }
     }
 }

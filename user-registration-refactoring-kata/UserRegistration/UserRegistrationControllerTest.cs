@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -39,9 +40,9 @@ namespace UserRegistration
             var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
             Assert.Equal("info@codium.team", responseContent["email"]);
         }
-        
+
         [Fact]
-        public async Task should_returns_a_user_with_the_name_when_everything_is_valid()
+        public async Task Should_returns_a_user_with_the_name_when_everything_is_valid()
         {
             var arguments = ValidArguments(Name: "Codium");
 
@@ -49,6 +50,16 @@ namespace UserRegistration
 
             var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
             Assert.Equal("Codium", responseContent["name"]);
+        }  
+
+        [Fact]
+        public async Task Should_fail_when_password_is_short()
+        {
+            var arguments = ValidArguments(Password: "myPs_1");
+
+            var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
         public Dictionary<string, string> ValidArguments(string Name = "Codium", string Email = "info@codium.team", string Password = "myPass_123123" )
