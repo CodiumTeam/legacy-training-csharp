@@ -39,6 +39,17 @@ namespace UserRegistration
             var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
             Assert.Equal("info@codium.team", responseContent["email"]);
         }
+        
+        [Fact]
+        public async Task should_returns_a_user_with_the_name_when_everything_is_valid()
+        {
+            var arguments = ValidArguments(Name: "Codium");
+
+            var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
+
+            var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
+            Assert.Equal("Codium", responseContent["name"]);
+        }
 
         public Dictionary<string, string> ValidArguments(string Name = "Codium", string Email = "info@codium.team", string Password = "myPass_123123" )
         {
