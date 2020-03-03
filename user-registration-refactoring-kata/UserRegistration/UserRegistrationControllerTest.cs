@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
+using UserRegistration.Controllers;
 using Xunit;
 
 namespace UserRegistration
@@ -18,6 +19,7 @@ namespace UserRegistration
         {
             var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
             client = server.CreateClient();
+            UserRegistrationController.orm = new OrmUserRepository();
         }
 
         [Fact]
@@ -72,7 +74,18 @@ namespace UserRegistration
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("The password is not valid", await response.Content.ReadAsStringAsync());
+        }
 
+        [Fact]
+        public async Task Should_fail_when_email_is_used()
+        {
+            var arguments = ValidArguments();
+            await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
+
+            var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal("The email is already in use", await response.Content.ReadAsStringAsync());
         }
 
         public Dictionary<string, string> ValidArguments(string Name = "Codium", string Email = "info@codium.team", string Password = "myPass_123123" )
