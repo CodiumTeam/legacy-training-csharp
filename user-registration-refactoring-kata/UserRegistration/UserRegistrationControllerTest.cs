@@ -17,7 +17,7 @@ namespace UserRegistration
             var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
             var client = server.CreateClient();
 
-            var response = await client.PostAsync("/users", null);
+            var response = await client.PostAsync("/users", new FormUrlEncodedContent(ValidArguments()));
 
             response.EnsureSuccessStatusCode();
         }
@@ -27,17 +27,22 @@ namespace UserRegistration
         {
             var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
             var client = server.CreateClient();
-            var arguments = new Dictionary<string, string>()
-            {
-                { "name", "Codium" } ,
-                { "email", "info@codium.team" } ,
-                { "password", "myPass_123123" } ,
-            };
+            var arguments = ValidArguments();
 
             var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
 
             var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
             Assert.Equal("info@codium.team", responseContent["email"]);
+        }
+
+        public Dictionary<string, string> ValidArguments()
+        {
+            return new Dictionary<string, string>()
+            {
+                { "name", "Codium" } ,
+                { "email", "info@codium.team" } ,
+                { "password", "myPass_123123" } ,
+            };
         }
     }
 }
