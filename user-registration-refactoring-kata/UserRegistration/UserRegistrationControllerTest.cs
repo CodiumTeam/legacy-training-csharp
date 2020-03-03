@@ -32,7 +32,7 @@ namespace UserRegistration
         [Fact]
         public async Task Should_returns_a_user_with_the_email_when_everything_is_valid()
         {
-            var arguments = ValidArguments();
+            var arguments = ValidArguments(Email: "info@codium.team");
 
             var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
 
@@ -40,13 +40,13 @@ namespace UserRegistration
             Assert.Equal("info@codium.team", responseContent["email"]);
         }
 
-        public Dictionary<string, string> ValidArguments()
+        public Dictionary<string, string> ValidArguments(string Name = "Codium", string Email = "info@codium.team", string Password = "myPass_123123" )
         {
             return new Dictionary<string, string>()
             {
-                { "name", "Codium" } ,
-                { "email", "info@codium.team" } ,
-                { "password", "myPass_123123" } ,
+                { "name", Name } ,
+                { "email", Email } ,
+                { "password", Password } ,
             };
         }
     }
