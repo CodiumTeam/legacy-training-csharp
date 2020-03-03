@@ -17,14 +17,15 @@ namespace UserRegistration.Controllers
         };
 
         [HttpGet]
-        public WeatherForecast Get()
+        public User Get()
         {
             var rng = new Random();
-            return new WeatherForecast
+            return new User
             {
-                Date = DateTime.Now.AddDays(1),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                Id = rng.Next(1,1000),
+                Name = "Jordi",
+                Password = "aPassword",
+                Email = "jordi@codium.team"
             };
         }
     }
