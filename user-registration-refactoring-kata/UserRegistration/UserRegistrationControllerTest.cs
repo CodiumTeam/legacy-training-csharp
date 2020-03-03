@@ -11,13 +11,20 @@ namespace UserRegistration
 
     public class UserRegistrationControllerTest
     {
+        private HttpClient client;
+
+        public UserRegistrationControllerTest()
+        {
+            var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
+            client = server.CreateClient();
+        }
+
         [Fact]
         public async Task Should_success_when_everything_is_valid()
         {
-            var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
-            var client = server.CreateClient();
+            var arguments = ValidArguments();
 
-            var response = await client.PostAsync("/users", new FormUrlEncodedContent(ValidArguments()));
+            var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
 
             response.EnsureSuccessStatusCode();
         }
@@ -25,8 +32,6 @@ namespace UserRegistration
         [Fact]
         public async Task Should_returns_a_user_with_the_email_when_everything_is_valid()
         {
-            var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
-            var client = server.CreateClient();
             var arguments = ValidArguments();
 
             var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
