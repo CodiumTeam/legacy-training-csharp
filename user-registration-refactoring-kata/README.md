@@ -31,9 +31,6 @@ This project uses [.NET Core](https://www.microsoft.com/net/download)
 
 To change the .NET Core version used modify the Tennis.csproj file.
 
-## How to execute the app
-    dotnet Trivia/bin/Debug/netcoreapp3.1/Trivia.dll
-
 ## How to run the tests
     dotnet test
     
