@@ -60,6 +60,19 @@ namespace UserRegistration
             var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal("The password is not valid", await response.Content.ReadAsStringAsync());
+        }
+
+        [Fact]
+        public async Task Should_fail_when_password_does_not_contains_underscore()
+        {
+            var arguments = ValidArguments(Password: "myPasss123123");
+
+            var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal("The password is not valid", await response.Content.ReadAsStringAsync());
+
         }
 
         public Dictionary<string, string> ValidArguments(string Name = "Codium", string Email = "info@codium.team", string Password = "myPass_123123" )

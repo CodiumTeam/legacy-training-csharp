@@ -18,8 +18,8 @@ namespace UserRegistration.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public IActionResult RegisterUser(IFormCollection FormData)
         {
-            if (FormData["password"].ToString().Length <= 8){
-                return BadRequest("request is incorrect");
+            if (FormData["password"].ToString().Length <= 8 || !FormData["password"].ToString().Contains("_")){
+                return BadRequest("The password is not valid");
             }
             var rng = new Random();
             return Ok(new User
