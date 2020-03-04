@@ -26,11 +26,11 @@ namespace UserRegistration.Controllers
         {
             if (FormData["password"].ToString().Length <= 8 || !FormData["password"].ToString().Contains("_"))
             {
-                return BadRequest("The password is not valid");
+                return new BadRequestObjectResult("The password is not valid");
             }
             if (orm.FindByEmail(FormData["email"].ToString()) != null)
             {
-                return BadRequest("The email is already in use");
+                return new BadRequestObjectResult("The email is already in use");
             }
             var rng = new Random();
             var user = new User
@@ -54,7 +54,7 @@ namespace UserRegistration.Controllers
             // If a proper SMTP server is configured, this line could be uncommented
             //client.Send(mailMessage);
 
-            return Ok(user);
+            return new OkObjectResult(user);
         }
     }
 }
