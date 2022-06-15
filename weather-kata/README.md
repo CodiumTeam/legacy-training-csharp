@@ -1,18 +1,12 @@
 # Weather kata
+We cannot control the weather, but we can predict it.
 
-## Description:
-This kata has a code that request the weather prediction from Metaweather.
+This kata has a code that request the weather prediction from an external API.
 
-We want to be able to use the code with a simple interface called [ForecastService](./WeatherKata/ForecastService.cs)
+## Goal
+- Test coupled code.
+- Remove the external dependency when testing in order to make the tests repeatable and fast
 
-We also want to decouple our code from the existing dependencies.
-
-There is a bad test suite that simplify understand how our code actually works. 
-
-## Goals:
-- How to adapt the current interface to the expected one.
-- How to decouple.
-- How to define an interface respecting the Dependency Inversion Principle.
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
