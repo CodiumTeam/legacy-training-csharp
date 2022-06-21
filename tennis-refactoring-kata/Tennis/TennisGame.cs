@@ -1,13 +1,13 @@
-namespace Tennis
+﻿namespace Tennis
 {
-    class TennisGame1 : ITennisGame
+    public class TennisGame
     {
         private int m_score1 = 0;
         private int m_score2 = 0;
         private string player1Name;
         private string player2Name;
 
-        public TennisGame1(string player1Name, string player2Name)
+        public TennisGame(string player1Name, string player2Name)
         {
             this.player1Name = player1Name;
             this.player2Name = player2Name;
@@ -79,4 +79,3 @@ namespace Tennis
         }
     }
 }
-
