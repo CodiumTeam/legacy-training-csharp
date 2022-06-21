@@ -9,4 +9,4 @@ test:
 
 .PHONY: docker-test
 docker-test:
-	docker run --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk dotnet test test
+	docker run --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet test test
