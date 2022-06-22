@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+
 
 
 
@@ -22,13 +22,13 @@ namespace UserRegistration.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public IActionResult RegisterUser(IFormCollection FormData)
+        public IActionResult RegisterUser([FromForm] string password, [FromForm] string name, [FromForm] string email)
         {
-            if (FormData["password"].ToString().Length <= 8 || !FormData["password"].ToString().Contains("_"))
+            if (password.Length <= 8 || !password.Contains("_"))
             {
                 return new BadRequestObjectResult("The password is not valid");
             }
-            if (orm.FindByEmail(FormData["email"].ToString()) != null)
+            if (orm.FindByEmail(email.ToString()) != null)
             {
                 return new BadRequestObjectResult("The email is already in use");
             }
@@ -36,9 +36,9 @@ namespace UserRegistration.Controllers
             var user = new User
             {
                 Id = rng.Next(1, 1000),
-                Name = FormData["name"],
-                Password = FormData["password"],
-                Email = FormData["email"]
+                Name = name,
+                Password = password,
+                Email = email
             };
             orm.Save(user);
 
@@ -48,7 +48,7 @@ namespace UserRegistration.Controllers
 
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress("noreply@codium.team");
-            mailMessage.To.Add(FormData["email"]);
+            mailMessage.To.Add(email);
             mailMessage.Body = "This is the confirmation email";
             mailMessage.Subject = "Welcome to Codium";
             // If a proper SMTP server is configured, this line could be uncommented

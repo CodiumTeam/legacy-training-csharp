@@ -1,12 +1,8 @@
-using System.Collections.Generic;
+
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Newtonsoft.Json;
 using UserRegistration.Controllers;
-using Xunit;
+using Microsoft.AspNetCore.Mvc.Testing;
+using System.Text.Json.Nodes;
 
 namespace UserRegistration
 {
@@ -17,7 +13,8 @@ namespace UserRegistration
 
         public UserRegistrationControllerTest()
         {
-            var server = new TestServer(new WebHostBuilder().UseStartup<UserRegistration.Startup>());
+            var server = new WebApplicationFactory<Program>();
+            
             client = server.CreateClient();
             UserRegistrationController.orm = new OrmUserRepository();
         }
@@ -39,8 +36,9 @@ namespace UserRegistration
 
             var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
 
-            var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
-            Assert.Equal("info@codium.team", responseContent["email"]);
+            
+            var responseContent = JsonNode.Parse(await response.Content.ReadAsStringAsync());
+            Assert.Equal("info@codium.team", responseContent?["email"]?.ToString());
         }
 
         [Fact]
@@ -49,9 +47,9 @@ namespace UserRegistration
             var arguments = ValidArguments(Name: "Codium");
 
             var response = await client.PostAsync("/users", new FormUrlEncodedContent(arguments));
-
-            var responseContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
-            Assert.Equal("Codium", responseContent["name"]);
+            
+            var responseContent = JsonNode.Parse(await response.Content.ReadAsStringAsync());
+            Assert.Equal("Codium", responseContent?["name"]?.ToString());
         }  
 
         [Fact]
