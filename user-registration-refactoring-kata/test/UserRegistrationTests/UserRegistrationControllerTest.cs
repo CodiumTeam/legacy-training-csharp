@@ -1,4 +1,3 @@
-
 using System.Net;
 using UserRegistration.Controllers;
 using Microsoft.AspNetCore.Mvc.Testing;
