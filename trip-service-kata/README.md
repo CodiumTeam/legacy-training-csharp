@@ -4,7 +4,7 @@
 This kata simulates a social network of trips.
 
 
-There are some couplings inside the [TripService](./TripServiceKata/Trip/TripService.cs) that we need to use the dependency-breaking techniques that we have learned.
+There are some couplings inside the [TripService](./src/TripService/Trip/TripService.cs) that we need to use the dependency-breaking techniques that we have learned.
 
 We want to be able to test TripService and when we have good test coverage we will refactor to improve the code design.
 
