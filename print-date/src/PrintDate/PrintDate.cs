@@ -2,10 +2,10 @@
 
 public class PrintDate
 {
-    private readonly Calendar _calendar;
-    private readonly Printer _printer;
+    private readonly ICalendar _calendar;
+    private readonly IPrinter _printer;
 
-    public PrintDate(Calendar calendar, Printer printer)
+    public PrintDate(ICalendar calendar, IPrinter printer)
     {
         _calendar = calendar;
         _printer = printer;

@@ -1,6 +1,6 @@
 namespace PrintDate;
 
-public class Printer
+public class Printer : IPrinter
 {
     public void PrintLine(string line)
     {

@@ -1,6 +1,6 @@
 namespace PrintDate;
 
-public class Calendar
+public class Calendar : ICalendar
 {
     public DateTime Today()
     {
