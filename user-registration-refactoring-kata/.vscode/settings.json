@@ -9,5 +9,6 @@
         "**/Thumbs.db": true,
         "**/obj": true,
         "**/bin": true,
-    }
+    },
+    "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'"
 }

@@ -5,8 +5,8 @@ default: docker-test
 
 .PHONY: test
 test:
-	dotnet test ./test/UserRegistrationTests
+	dotnet test ./test/UserRegistrationTests /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'
 
 .PHONY: docker-test
 docker-test:
-	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet test ./test/UserRegistrationTests
+	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet test ./test/UserRegistrationTests /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'
