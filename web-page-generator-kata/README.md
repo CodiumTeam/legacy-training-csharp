@@ -1,5 +1,8 @@
 # Web Page Generator Kata
 
+## How to run the kata
+Use _make_ or open [Makefile](./Makefile) and copy the commands.
+
 ## Description:
 ### Context
 We currently have system that generates static web pages for our website. One of those pages is the Users Biography page where it is displayed valuable information about our registered users.

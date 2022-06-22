@@ -5,15 +5,8 @@
 - Practice refactors / automated refactors
 - Enjoy the benefits of having a test harness
 
-## How to build 
-    dotnet build
-
-This project uses [.NET Core](https://www.microsoft.com/net/download)
-
-To change the .NET Core version used modify the Tennis.csproj file.
-
 ## How to run the tests
-    dotnet test
+Use _make_ or open [Makefile](./Makefile) and copy the commands.
 
 ## Context
 Imagine you work for a consultancy company, and one of your colleagues has been doing some work for the Tennis Society. 
