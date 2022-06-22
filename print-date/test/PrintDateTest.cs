@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using PrintDate;
 
 namespace KataPrintDate.Tests
 {
@@ -12,7 +7,7 @@ namespace KataPrintDate.Tests
         [Fact]
         public void think_a_good_name_and_change_it()
         {
-            var printDate = new PrintDate.PrintDate();
+            var printDate = new PrintDate.PrintDate(new Calendar(), new Printer());
 
             printDate.PrintCurrentDate();
 
