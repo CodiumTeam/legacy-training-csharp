@@ -10,18 +10,6 @@ We will assume it works as expected.
 We would like to modify the existing the code but is difficult to guarantee that we will not break anything. 
 Prior to modifying the code, we will apply the Golden Master technique to create a safety net that will provide us some security when changing the code.
 
-## How to build 
-    dotnet build
-
-This project uses [.NET Core](https://www.microsoft.com/net/download)
-
-To change the .NET Core version used modify the Tennis.csproj file.
-
-## How to execute the app
-    dotnet Trivia/bin/Debug/netcoreapp3.1/Trivia.dll
-
-## How to run the tests
-    dotnet test
 
 Although a test class is provided there other simpler solutions to apply the Golden Master technique.
 
