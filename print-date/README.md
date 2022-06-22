@@ -1,5 +1,9 @@
 # Goal
-Be able to test printCurrentDate function.
+Be able to test printCurrentDate function without changing the method signature.
+
+1. Test the code with doubles using a library.
+2. Test the code with doubles created by you.
+
 # Code to test
     public void PrintCurrentDate()
     {
@@ -31,7 +35,7 @@ Be able to test printCurrentDate function.
     	Assert.Equal(response, result);
 	}
 
-# Learnings
-- Dependency injection.
-- How to build a Mock and Stub manually.
-- How to use a mocking library.
+## Authors
+Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
+
+Jordi Anguela [@jordianguela](https://www.twitter.com/jordianguela)
