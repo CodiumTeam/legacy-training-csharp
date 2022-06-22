@@ -7,7 +7,8 @@ Be able to test printCurrentDate function without changing the method signature.
 # Code to test
     public void PrintCurrentDate()
     {
-      Console.WriteLine(DateTime.Now);
+        var line = _calendar.Today().ToString();
+        _printer.PrintLine(line);
     }
 
 ### Example of Mock
