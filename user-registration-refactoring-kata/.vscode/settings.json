@@ -10,5 +10,13 @@
         "**/obj": true,
         "**/bin": true,
     },
-    "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'"
+    "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'",
+    "coverage-gutters.coverageFileNames": [
+        "coverage.info",
+        "lcov.info",
+        "cov.xml",
+        "coverage.xml",
+        "jacoco.xml",
+        "coverage.cobertura.xml"
+    ]
 }
