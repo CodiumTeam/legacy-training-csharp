@@ -7,6 +7,11 @@ default: docker-test
 test:
 	dotnet test test
 
+.PHONY: coverage
+coverage:
+	dotnet test test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='./TestResults/'
+	dotnet reportgenerator -reports:test/TestResults/coverage.cobertura.xml -targetdir:test/TestResults/html
+	@printf "\nOpen test/TestResults/html/index.html\n"
 
 .PHONY: docker-build
 docker-build:
@@ -15,3 +20,7 @@ docker-build:
 .PHONY: docker-test
 docker-test:
 	docker run --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:weather make test
+
+.PHONY: docker-coverage
+docker-coverage:
+	docker run --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:weather make coverage
