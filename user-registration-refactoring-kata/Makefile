@@ -11,10 +11,14 @@ test:
 coverage:
 	dotnet test ./test/UserRegistrationTests /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'
 
+.PHONY: docker-build
+docker-build:
+	docker build -f ../Dockerfile -t codiumteam/legacy-training-csharp:userregistration .
+
 .PHONY: docker-test
 docker-test:
-	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet test test/UserRegistrationTests
+	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:userregistration make test
 
 .PHONY: docker-coverage
 docker-coverage:
-	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet test ./test/UserRegistrationTests /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./TestResults/'
+	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:userregistration make coverage
