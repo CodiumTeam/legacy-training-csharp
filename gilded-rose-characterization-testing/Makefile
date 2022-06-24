@@ -7,6 +7,12 @@ default: docker-test
 test:
 	dotnet test test
 
+.PHONY: coverage
+coverage:
+	dotnet test test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='./TestResults/'
+	dotnet reportgenerator -reports:test/TestResults/coverage.cobertura.xml -targetdir:test/TestResults/html
+	@printf "\nOpen test/TestResults/html/index.html\n"
+
 
 .PHONY: mutation
 mutation:
@@ -18,8 +24,12 @@ docker-build:
 
 .PHONY: docker-test
 docker-test:
-	docker run --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet test test
+	docker run --rm -v ${PWD}:/code -w /code codiumteam/legacy-training-csharp:gilded-rose-characterization make test
+
+.PHONY: docker-coverage
+docker-coverage:
+	docker run --rm -v ${PWD}:/code -w /code codiumteam/legacy-training-csharp:gilded-rose-characterization make coverage
 
 .PHONY: docker-mutation
 docker-mutation:
-	docker run --rm -v ${PWD}:/code -w /code codiumteam/legacy-training-csharp:gilded-rose-characterization dotnet stryker -tp test
+	docker run --rm -v ${PWD}:/code -w /code codiumteam/legacy-training-csharp:gilded-rose-characterization make mutation
