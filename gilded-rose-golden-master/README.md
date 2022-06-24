@@ -1,13 +1,17 @@
-# Gilded Rose Golden Master
+# Gilded Rose Golden master
 
 ## Description:
-This is a legacy code kata simulates that implements the xx.
+This kata has a legacy code to practice writing a Golden Master piece.
 
-The code is small but it has a lot of code smells and sometimes it's difficult to understand.
- 
+# Business requirements
+You don't need the business requirements.
+
 ## Goals:
 - Write a code to generate an output that you need to be sure the code behaviour does not change.
 - Write an script to automate the test execution.
+
+## How to run the kata
+Use _make_ or open [Makefile](./Makefile) and copy the commands.
 
 ## Inspired by:
 https://github.com/emilybache/GildedRose-Refactoring-Kata/
