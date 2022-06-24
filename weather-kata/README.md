@@ -7,6 +7,8 @@ This kata has a code that request the weather prediction from an external API.
 - Test coupled code.
 - Remove the external dependency when testing in order to make the tests repeatable and fast
 
+## How to run the kata
+Use _make_ or open [Makefile](./Makefile) and copy the commands.
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
