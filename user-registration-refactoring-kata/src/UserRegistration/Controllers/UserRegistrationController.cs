@@ -1,6 +1,8 @@
 ﻿using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using UserRegistration.Domain;
+using UserRegistration.Infrastructure;
 
 namespace UserRegistration.Controllers
 {

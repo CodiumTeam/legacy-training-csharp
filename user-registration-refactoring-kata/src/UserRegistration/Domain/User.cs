@@ -1,4 +1,4 @@
-namespace UserRegistration
+namespace UserRegistration.Domain
 {
     public class User
     {

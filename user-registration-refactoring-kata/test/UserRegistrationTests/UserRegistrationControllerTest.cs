@@ -2,6 +2,7 @@ using System.Net;
 using UserRegistration.Controllers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Text.Json.Nodes;
+using UserRegistration.Infrastructure;
 
 namespace UserRegistration
 {

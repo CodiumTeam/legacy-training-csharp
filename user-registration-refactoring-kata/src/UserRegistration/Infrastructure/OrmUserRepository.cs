@@ -1,4 +1,6 @@
-namespace UserRegistration
+using UserRegistration.Domain;
+
+namespace UserRegistration.Infrastructure
 {
     public class OrmUserRepository
     {
