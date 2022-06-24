@@ -12,13 +12,13 @@ namespace UserRegistration.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public IActionResult RegisterUser([FromForm] string password, [FromForm] string name, [FromForm] string email)
+        public IActionResult RegisterUser(IFormCollection formData)
         {
-            if (password.Length <= 8 || !password.Contains("_"))
+            if (formData["password"].ToString().Length <= 8 || !formData["password"].ToString().Contains("_"))
             {
                 return new BadRequestObjectResult("The password is not valid");
             }
-            if (orm.FindByEmail(email.ToString()) != null)
+            if (orm.FindByEmail(formData["email"].ToString()) != null)
             {
                 return new BadRequestObjectResult("The email is already in use");
             }
@@ -26,9 +26,9 @@ namespace UserRegistration.Controllers
             var user = new User
             {
                 Id = rng.Next(1, 1000),
-                Name = name,
-                Password = password,
-                Email = email
+                Name = formData["name"].ToString(),
+                Password = formData["password"].ToString(),
+                Email = formData["email"].ToString()
             };
             orm.Save(user);
 
@@ -38,7 +38,7 @@ namespace UserRegistration.Controllers
 
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress("noreply@codium.team");
-            mailMessage.To.Add(email);
+            mailMessage.To.Add(formData["email"].ToString());
             mailMessage.Body = "This is the confirmation email";
             mailMessage.Subject = "Welcome to Codium";
             // If a proper SMTP server is configured, this line could be uncommented
