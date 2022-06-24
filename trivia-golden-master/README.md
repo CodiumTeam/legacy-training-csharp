@@ -1,5 +1,8 @@
 # Trivia Golden Master Kata
 
+## How to run the kata
+Use _make_ or open [Makefile](./Makefile) and copy the commands.
+
 ## Description:
 This is a legacy code kata that simulates the Trivia game.
 

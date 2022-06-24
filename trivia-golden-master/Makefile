@@ -12,10 +12,13 @@ run:
 test:
 	dotnet test test
 
+.PHONY: docker-build
+docker-build:
+	docker build -f ../Dockerfile -t codiumteam/legacy-training-csharp:trivia .
 
 .PHONY: docker-run
 docker-run:
-	docker run --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet run --project src/Trivia
+	docker run --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:trivia make run
 
 .PHONY: docker-test
 docker-test:
