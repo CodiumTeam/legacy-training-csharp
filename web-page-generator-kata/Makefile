@@ -8,8 +8,10 @@ run:
 	dotnet run --project src/WebPageGenerator
 	@printf "Open html/users.html\n"
 
+.PHONY: docker-build
+docker-build:
+	docker build -f ../Dockerfile -t codiumteam/legacy-training-csharp:webpagegenerator .
 
 .PHONY: docker-run
 docker-run:
-	docker run --rm -v ${PWD}:/code -w /code mcr.microsoft.com/dotnet/sdk:6.0-alpine dotnet run --project src/WebPageGenerator
-	@printf "Open html/users.html\n"
+	docker run --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:webpagegenerator make run
