@@ -1,4 +1,5 @@
-﻿using PrintDate;
+﻿using NSubstitute;
+using PrintDate;
 
 namespace KataPrintDate.Tests
 {

@@ -11,7 +11,7 @@ Be able to test printCurrentDate function without changing the method signature.
         _printer.PrintLine(line);
     }
 
-### Example of Mock
+### Example of Mock/Spy
 
 	[Fact]
 	public void should_interact_with_the_mock() {
