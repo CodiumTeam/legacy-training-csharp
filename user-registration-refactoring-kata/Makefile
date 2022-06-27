@@ -17,8 +17,8 @@ docker-build:
 
 .PHONY: docker-test
 docker-test:
-	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:userregistration make test
+	docker run --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:userregistration make test
 
 .PHONY: docker-coverage
 docker-coverage:
-	docker run --user $$(id -u) -e DOTNET_CLI_HOME=/tmp/.vscode --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:userregistration make coverage
+	docker run --rm -v ${PWD}:/code codiumteam/legacy-training-csharp:userregistration make coverage
