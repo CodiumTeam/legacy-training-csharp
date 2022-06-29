@@ -8,14 +8,14 @@ namespace UserRegistration.UseCase;
 
 public class RegisterUser
 {
-    public IActionResult Execute(IFormCollection formData)
+    public IActionResult Execute(string Password, string Email, string Name)
     {
-        if (formData["password"].ToString().Length <= 8 || !formData["password"].ToString().Contains("_"))
+        if (Password.Length <= 8 || !Password.Contains("_"))
         {
             return new BadRequestObjectResult("The password is not valid");
         }
 
-        if (UserRegistrationController.orm.FindByEmail(formData["email"].ToString()) != null)
+        if (UserRegistrationController.orm.FindByEmail(Email) != null)
         {
             return new BadRequestObjectResult("The email is already in use");
         }
@@ -24,9 +24,9 @@ public class RegisterUser
         var user = new User
         {
             Id = rng.Next(1, 1000),
-            Name = formData["name"].ToString(),
-            Password = formData["password"].ToString(),
-            Email = formData["email"].ToString()
+            Name = Name,
+            Password = Password,
+            Email = Email
         };
         UserRegistrationController.orm.Save(user);
 
@@ -36,7 +36,7 @@ public class RegisterUser
 
         MailMessage mailMessage = new MailMessage();
         mailMessage.From = new MailAddress("noreply@codium.team");
-        mailMessage.To.Add(formData["email"].ToString());
+        mailMessage.To.Add(Email);
         mailMessage.Body = "This is the confirmation email";
         mailMessage.Subject = "Welcome to Codium";
         // If a proper SMTP server is configured, this line could be uncommented

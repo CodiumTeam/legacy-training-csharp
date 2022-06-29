@@ -17,7 +17,7 @@ namespace UserRegistration.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public IActionResult RegisterUser(IFormCollection formData)
         {
-            return new RegisterUser().Execute(formData);
+            return new RegisterUser().Execute(formData["password"].ToString(), formData["email"].ToString(), formData["name"].ToString());
         }
     }
 }
