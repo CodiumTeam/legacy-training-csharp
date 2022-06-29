@@ -40,6 +40,7 @@ class UsersStaticWebPageGenerator
         foreach (User user in users)
         {
             fileWriter.WriteLine("<h1 class=\"cover-heading\">" + user.Name + "</h1>\n");
+			AddLabels(user, fileWriter);
             fileWriter.WriteLine("<p class=\"lead\">" + user.Biography + "</p>\n");
         }
         fileWriter.WriteLine("</main>");
@@ -61,5 +62,13 @@ class UsersStaticWebPageGenerator
         fileWriter.WriteLine("</html>");
 
         fileWriter.Close();
+    }
+
+    private static void AddLabels(User user, StreamWriter fileWriter)
+    {
+        if (user.Biography.Contains("community manager"))
+        {
+            fileWriter.WriteLine("  <span class=\"badge badge-pill badge-danger\">Community manager</span>");
+        }
     }
 }
