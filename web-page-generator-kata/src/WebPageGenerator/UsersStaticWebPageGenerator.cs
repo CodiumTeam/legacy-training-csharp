@@ -66,11 +66,17 @@ class UsersStaticWebPageGenerator
 
     private static void AddLabels(User user, StreamWriter fileWriter)
     {
-        string communityManagerLabel = null;
+        var communityManagerLabel = CommunityManagerLabel(user);
+        fileWriter.WriteLine(communityManagerLabel);
+    }
+
+    private static string CommunityManagerLabel(User user)
+    {
         if (user.Biography.Contains("community manager"))
         {
-            communityManagerLabel = "<span class=\"badge badge-pill badge-danger\">Community manager</span>";
+            return "<span class=\"badge badge-pill badge-danger\">Community manager</span>";
         }
-        fileWriter.WriteLine(communityManagerLabel);
+
+        return "";
     }
 }
