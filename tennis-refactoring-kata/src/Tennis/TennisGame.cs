@@ -28,17 +28,22 @@
                 return CalculateScoreWithSameScore();
             }
 
-            if (IsAdvantageOrWin() && IsAdvantage())
+            if (IsAdvantage())
             {
                 return CalculateAdvantageScore();
             }
 
-            if (IsAdvantageOrWin())
+            if (IsWin())
             {
                 return CalculateWinScore();
             }
 
             return CalculateRegularScore();
+        }
+
+        private bool IsWin()
+        {
+            return IsAdvantageOrWin() && Math.Abs(DifferenceOfScores()) != 1;
         }
 
         private string CalculateRegularScore()
@@ -83,7 +88,7 @@
 
         private bool IsAdvantage()
         {
-            return Math.Abs(DifferenceOfScores()) == 1;
+            return IsAdvantageOrWin() && Math.Abs(DifferenceOfScores()) == 1;
         }
 
         private int DifferenceOfScores()
