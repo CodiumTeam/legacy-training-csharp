@@ -13,6 +13,7 @@ namespace UserRegistration.UseCase
             {
                 throw new InvalidPasswordException();
             }
+
             if (UserRegistrationController.orm.FindByEmail(Email) != null)
             {
                 throw new UserAlreadyExistsException();
@@ -28,17 +29,13 @@ namespace UserRegistration.UseCase
             };
             UserRegistrationController.orm.Save(user);
 
-            SmtpClient client = new SmtpClient("mysmtpserver");
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("smtpUsername", "smtpPassword");
-
-            MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("noreply@codium.team");
-            mailMessage.To.Add(Email);
-            mailMessage.Body = "This is the confirmation email";
-            mailMessage.Subject = "Welcome to Codium";
-            // If a proper SMTP server is configured, this line could be uncommented
-            //client.Send(mailMessage);
+            var email = new Email(
+                "noreply@codium.team",
+                Email,
+                "Welcome to Codium",
+                "This is the confirmation email"
+            );
+            new SmtpEmailSender().SendEmail(email);
 
             return user;
         }
