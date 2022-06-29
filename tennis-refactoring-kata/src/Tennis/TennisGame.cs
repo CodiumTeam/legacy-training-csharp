@@ -87,24 +87,13 @@
 
         private string CalculateScoreWithSameScore()
         {
-            string score;
-            switch (m_score1)
+            return m_score1 switch
             {
-                case 0:
-                    score = "Love-All";
-                    break;
-                case 1:
-                    score = "Fifteen-All";
-                    break;
-                case 2:
-                    score = "Thirty-All";
-                    break;
-                default:
-                    score = "Deuce";
-                    break;
-            }
-
-            return score;
+                0 => "Love-All",
+                1 => "Fifteen-All",
+                2 => "Thirty-All",
+                _ => "Deuce"
+            };
         }
 
         private bool HasSameScore()
