@@ -28,16 +28,14 @@
                 return CalculateScoreWithSameScore();
             }
 
+            if (IsAdvantageOrWin() && IsAdvantage())
+            {
+                return CalculateAdvantageScore();
+            }
+
             if (IsAdvantageOrWin())
             {
-                if (IsAdvantage())
-                {
-                    return CalculateAdvantageScore();
-                }
-                else
-                {
-                    return CalculateWinScore();
-                }
+                return CalculateWinScore();
             }
 
             return CalculateRegularScore();
