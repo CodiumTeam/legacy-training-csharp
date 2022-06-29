@@ -69,14 +69,7 @@
 
         private string CalculateAdvantageScore()
         {
-            if (DifferenceOfScores() == 1)
-            {
-                return "Advantage player1";
-            }
-            else
-            {
-                return "Advantage player2";
-            }
+            return DifferenceOfScores() == 1 ? "Advantage player1" : "Advantage player2";
         }
 
         private bool IsWin()
@@ -86,14 +79,7 @@
 
         private string CalculateWinScore()
         {
-            if (DifferenceOfScores() >= 2)
-            {
-                return "Win for player1";
-            }
-            else
-            {
-                return "Win for player2";
-            }
+            return DifferenceOfScores() >= 2 ? "Win for player1" : "Win for player2";
         }
 
         private string CalculateRegularScore()
