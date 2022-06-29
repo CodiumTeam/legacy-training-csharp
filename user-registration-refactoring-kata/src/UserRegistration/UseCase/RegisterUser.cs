@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Mail;
-using Microsoft.AspNetCore.Mvc;
 using UserRegistration.Controllers;
 using UserRegistration.Domain;
 
@@ -12,7 +11,7 @@ namespace UserRegistration.UseCase
 {
     public class RegisterUser
     {
-        public IActionResult Execute(string Password, string Email, string Name)
+        public User Execute(string Password, string Email, string Name)
         {
             if (Password.Length <= 8 || !Password.Contains("_"))
             {
@@ -46,7 +45,7 @@ namespace UserRegistration.UseCase
             // If a proper SMTP server is configured, this line could be uncommented
             //client.Send(mailMessage);
 
-            return new OkObjectResult(user);
+            return user;
         }
     }
 }
