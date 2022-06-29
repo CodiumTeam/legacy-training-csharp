@@ -4,7 +4,7 @@ namespace Weather;
 
 public class Forecast
 {
-    public string predict(string city, DateTime? dateTime, bool wind)
+    public string Predict(string city, DateTime? dateTime, bool wind)
     {
         // When date is not provided we look for the current prediction
         if (!dateTime.HasValue)
@@ -52,7 +52,7 @@ public class Forecast
                     }
                     else
                     {
-                        var code = response!["daily"]!["weathercode"]![i]!.GetValue<int>();
+                        var code = (int) response!["daily"]!["weathercode"]![i]!.GetValue<float>();
                         return CodeToText(code);
                     }
                 }
