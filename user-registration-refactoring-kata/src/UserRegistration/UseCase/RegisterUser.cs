@@ -3,10 +3,6 @@ using System.Net.Mail;
 using UserRegistration.Controllers;
 using UserRegistration.Domain;
 
-namespace UserRegistration.Domain
-{
-}
-
 namespace UserRegistration.UseCase
 {
     public class RegisterUser
@@ -20,7 +16,6 @@ namespace UserRegistration.UseCase
             if (UserRegistrationController.orm.FindByEmail(Email) != null)
             {
                 throw new UserAlreadyExistsException();
-
             }
 
             var rng = new Random();
