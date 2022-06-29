@@ -49,21 +49,14 @@
                     tempScore = m_score2;
                 }
 
-                switch (tempScore)
+                score += tempScore switch
                 {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
+                    0 => "Love",
+                    1 => "Fifteen",
+                    2 => "Thirty",
+                    3 => "Forty",
+                    _ => ""
+                };
             }
 
             return score;
