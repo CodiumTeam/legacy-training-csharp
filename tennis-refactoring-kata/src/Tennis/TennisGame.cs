@@ -54,10 +54,9 @@
 
         private string CalculateAdvantageOrWinScore()
         {
-            var minusResult = m_score1 - m_score2;
-            if (Math.Abs(minusResult) == 1)
+            if (Math.Abs(DifferenceOfScores()) == 1)
             {
-                if (minusResult == 1)
+                if (DifferenceOfScores() == 1)
                 {
                     return "Advantage player1";
                 }
@@ -68,7 +67,7 @@
             }
             else
             {
-                if (minusResult >= 2)
+                if (DifferenceOfScores() >= 2)
                 {
                     return "Win for player1";
                 }
@@ -77,6 +76,11 @@
                     return "Win for player2";
                 }
             }
+        }
+
+        private int DifferenceOfScores()
+        {
+            return m_score1 - m_score2;
         }
 
         private bool IsAdvantageOrWin()
