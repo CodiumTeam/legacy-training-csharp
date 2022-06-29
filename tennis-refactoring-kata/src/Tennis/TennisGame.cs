@@ -35,13 +35,14 @@
             }
             else
             {
-                score = CalculateRegularScore(score);
+                score = CalculateRegularScore();
             }
             return score;
         }
 
-        private string CalculateRegularScore(string score)
+        private string CalculateRegularScore()
         {
+            string score = "";
             int tempScore;
             for (var i = 1; i < 3; i++)
             {
