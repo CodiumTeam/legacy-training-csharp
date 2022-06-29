@@ -23,21 +23,17 @@
 
         public string GetScore()
         {
-            string score = "";
-            var tempScore = 0;
             if (HasSameScore())
             {
-                score = CalculateScoreWithSameScore();
+                return CalculateScoreWithSameScore();
             }
-            else if (IsAdvantageOrWin())
+
+            if (IsAdvantageOrWin())
             {
-                score = CalculateAdvantageOrWinScore();
+                return CalculateAdvantageOrWinScore();
             }
-            else
-            {
-                score = CalculateRegularScore();
-            }
-            return score;
+
+            return CalculateRegularScore();
         }
 
         private string CalculateRegularScore()
