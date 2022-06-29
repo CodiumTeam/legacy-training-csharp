@@ -38,33 +38,18 @@
 
         private string CalculateRegularScore()
         {
-            string score = "";
-            int tempScore;
-
-            tempScore = m_score1;
-
-            score += tempScore switch
+            string CalculateScore(int score)
             {
-                0 => "Love",
-                1 => "Fifteen",
-                2 => "Thirty",
-                3 => "Forty",
-                _ => ""
-            };
+                return score switch
+                {
+                    0 => "Love",
+                    1 => "Fifteen",
+                    2 => "Thirty",
+                    3 => "Forty"
+                };
+            }
 
-            score += "-";
-            tempScore = m_score2;
-
-            score += tempScore switch
-            {
-                0 => "Love",
-                1 => "Fifteen",
-                2 => "Thirty",
-                3 => "Forty",
-                _ => ""
-            };
-
-            return score;
+            return CalculateScore(m_score1) + "-" + CalculateScore(m_score2);
         }
 
         private string CalculateAdvantageOrWinScore()
