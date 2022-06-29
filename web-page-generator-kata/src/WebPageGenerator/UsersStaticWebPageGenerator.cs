@@ -39,7 +39,7 @@ class UsersStaticWebPageGenerator
         fileWriter.WriteLine("<main role=\"main\" class=\"inner cover\">");
         foreach (User user in users)
         {
-            fileWriter.WriteLine("<h1 class=\"cover-heading\">" + user.Name + "</ h1 >\n");
+            fileWriter.WriteLine("<h1 class=\"cover-heading\">" + user.Name + "</h1>\n");
             fileWriter.WriteLine("<p class=\"lead\">" + user.Biography + "</p>\n");
         }
         fileWriter.WriteLine("</main>");
