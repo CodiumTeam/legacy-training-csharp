@@ -41,9 +41,59 @@
             return CalculateRegularScore();
         }
 
+        private bool HasSameScore()
+        {
+            return m_score1 == m_score2;
+        }
+
+        private string CalculateScoreWithSameScore()
+        {
+            return m_score1 switch
+            {
+                0 => "Love-All",
+                1 => "Fifteen-All",
+                2 => "Thirty-All",
+                _ => "Deuce"
+            };
+        }
+
+        private bool IsAdvantage()
+        {
+            return IsAdvantageOrWin() && Math.Abs(DifferenceOfScores()) == 1;
+        }
+
+        private bool IsAdvantageOrWin()
+        {
+            return m_score1 >= 4 || m_score2 >= 4;
+        }
+
+        private string CalculateAdvantageScore()
+        {
+            if (DifferenceOfScores() == 1)
+            {
+                return "Advantage player1";
+            }
+            else
+            {
+                return "Advantage player2";
+            }
+        }
+
         private bool IsWin()
         {
             return IsAdvantageOrWin() && Math.Abs(DifferenceOfScores()) != 1;
+        }
+
+        private string CalculateWinScore()
+        {
+            if (DifferenceOfScores() >= 2)
+            {
+                return "Win for player1";
+            }
+            else
+            {
+                return "Win for player2";
+            }
         }
 
         private string CalculateRegularScore()
@@ -62,59 +112,9 @@
             return CalculateScore(m_score1) + "-" + CalculateScore(m_score2);
         }
 
-        private string CalculateWinScore()
-        {
-            if (DifferenceOfScores() >= 2)
-            {
-                return "Win for player1";
-            }
-            else
-            {
-                return "Win for player2";
-            }
-        }
-
-        private string CalculateAdvantageScore()
-        {
-            if (DifferenceOfScores() == 1)
-            {
-                return "Advantage player1";
-            }
-            else
-            {
-                return "Advantage player2";
-            }
-        }
-
-        private bool IsAdvantage()
-        {
-            return IsAdvantageOrWin() && Math.Abs(DifferenceOfScores()) == 1;
-        }
-
         private int DifferenceOfScores()
         {
             return m_score1 - m_score2;
-        }
-
-        private bool IsAdvantageOrWin()
-        {
-            return m_score1 >= 4 || m_score2 >= 4;
-        }
-
-        private string CalculateScoreWithSameScore()
-        {
-            return m_score1 switch
-            {
-                0 => "Love-All",
-                1 => "Fifteen-All",
-                2 => "Thirty-All",
-                _ => "Deuce"
-            };
-        }
-
-        private bool HasSameScore()
-        {
-            return m_score1 == m_score2;
         }
     }
 }
