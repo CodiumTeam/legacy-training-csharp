@@ -17,7 +17,19 @@ namespace UserRegistration.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public IActionResult RegisterUser(IFormCollection formData)
         {
-            return new RegisterUser().Execute(formData["password"].ToString(), formData["email"].ToString(), formData["name"].ToString());
+            try
+            {
+                return new RegisterUser().Execute(formData["password"].ToString(), formData["email"].ToString(),
+                    formData["name"].ToString());
+            }
+            catch (InvalidPasswordException e)
+            {
+                return new BadRequestObjectResult("The password is not valid");
+            }
+            catch (UserAlreadyExistsException e)
+            {
+                return new BadRequestObjectResult("The email is already in use");
+            }
         }
     }
 }
