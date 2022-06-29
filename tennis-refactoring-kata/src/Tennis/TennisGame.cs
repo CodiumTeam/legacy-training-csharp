@@ -40,24 +40,40 @@
         {
             string score = "";
             int tempScore;
-            for (var i = 1; i < 3; i++)
-            {
-                if (i == 1) tempScore = m_score1;
-                else
-                {
-                    score += "-";
-                    tempScore = m_score2;
-                }
 
-                score += tempScore switch
-                {
-                    0 => "Love",
-                    1 => "Fifteen",
-                    2 => "Thirty",
-                    3 => "Forty",
-                    _ => ""
-                };
+            int i = 1;
+            if (i == 1) tempScore = m_score1;
+            else
+            {
+                score += "-";
+                tempScore = m_score2;
             }
+
+            score += tempScore switch
+            {
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty",
+                _ => ""
+            };
+
+            i = 2;
+            if (i == 1) tempScore = m_score1;
+            else
+            {
+                score += "-";
+                tempScore = m_score2;
+            }
+
+            score += tempScore switch
+            {
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty",
+                _ => ""
+            };
 
             return score;
         }
