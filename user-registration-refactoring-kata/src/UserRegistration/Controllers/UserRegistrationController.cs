@@ -19,8 +19,12 @@ namespace UserRegistration.Controllers
         {
             try
             {
-                var user = new RegisterUser().Execute(formData["password"].ToString(), formData["email"].ToString(),
-                    formData["name"].ToString());
+                var registerUser = new RegisterUser(new SmtpEmailSender());
+                var user = registerUser.Execute(
+                    formData["password"].ToString(),
+                    formData["email"].ToString(),
+                    formData["name"].ToString()
+                );
                 return new OkObjectResult(user);
             }
             catch (InvalidPasswordException e)

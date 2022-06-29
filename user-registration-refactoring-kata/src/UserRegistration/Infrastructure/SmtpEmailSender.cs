@@ -2,7 +2,7 @@ using System.Net;
 using System.Net.Mail;
 using UserRegistration.Domain;
 
-namespace UserRegistration.UseCase;
+namespace UserRegistration.Infrastructure;
 
 public class SmtpEmailSender: EmailSender
 {

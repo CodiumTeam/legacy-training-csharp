@@ -1,5 +1,3 @@
-using System.Net;
-using System.Net.Mail;
 using UserRegistration.Controllers;
 using UserRegistration.Domain;
 
@@ -7,6 +5,13 @@ namespace UserRegistration.UseCase
 {
     public class RegisterUser
     {
+        private readonly EmailSender _smtpEmailSender;
+
+        public RegisterUser(EmailSender emailSender)
+        {
+            _smtpEmailSender = emailSender;
+        }
+
         public User Execute(string Password, string Email, string Name)
         {
             if (Password.Length <= 8 || !Password.Contains("_"))
@@ -35,7 +40,7 @@ namespace UserRegistration.UseCase
                 "Welcome to Codium",
                 "This is the confirmation email"
             );
-            new SmtpEmailSender().SendEmail(email);
+            _smtpEmailSender.SendEmail(email);
 
             return user;
         }
