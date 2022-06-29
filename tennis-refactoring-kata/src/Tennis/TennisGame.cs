@@ -41,13 +41,7 @@
             string score = "";
             int tempScore;
 
-            int i = 1;
-            if (i == 1) tempScore = m_score1;
-            else
-            {
-                score += "-";
-                tempScore = m_score2;
-            }
+            tempScore = m_score1;
 
             score += tempScore switch
             {
@@ -58,13 +52,8 @@
                 _ => ""
             };
 
-            i = 2;
-            if (i == 1) tempScore = m_score1;
-            else
-            {
-                score += "-";
-                tempScore = m_score2;
-            }
+            score += "-";
+            tempScore = m_score2;
 
             score += tempScore switch
             {
