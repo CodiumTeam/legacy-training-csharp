@@ -30,7 +30,14 @@
 
             if (IsAdvantageOrWin())
             {
-                return CalculateAdvantageOrWinScore();
+                if (IsAdvantage())
+                {
+                    return CalculateAdvantageScore();
+                }
+                else
+                {
+                    return CalculateWinScore();
+                }
             }
 
             return CalculateRegularScore();
@@ -50,18 +57,6 @@
             }
 
             return CalculateScore(m_score1) + "-" + CalculateScore(m_score2);
-        }
-
-        private string CalculateAdvantageOrWinScore()
-        {
-            if (IsAdvantage())
-            {
-                return CalculateAdvantageScore();
-            }
-            else
-            {
-                return CalculateWinScore();
-            }
         }
 
         private string CalculateWinScore()
