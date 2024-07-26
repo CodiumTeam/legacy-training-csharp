@@ -9,37 +9,24 @@ public class Forecast
         // When date is not provided we look for the current prediction
         if (!dateTime.HasValue)
         {
-            dateTime = DateTime.Now;
+            dateTime = Today();
         }
 
         var format = dateTime.Value.ToString("yyyy-MM-dd");
 
         // If there are predictions
-        if (dateTime.Value.CompareTo(DateTime.Today.AddDays(6)) < 0)
+        if (dateTime.Value.CompareTo(Today().AddDays(6)) < 0)
         {
             // Find the latitude and longitude to get the prediction
-            var url = "https://positionstack.com/geo_api.php?query=" + city;
-            JsonNode response;
-            using (var httpClient = new HttpClient())
-            {
-                var json = httpClient.GetStringAsync(url).Result;
-
-                response = JsonNode.Parse(json)!;
-            }
+            string url;
+            var response = JsonNode.Parse(FindLatitudeAndLongitude(city))!;
 
             var latitude = response!["data"]![0]!["latitude"]!.ToString();
             var longitude = response!["data"]![0]!["longitude"]!.ToString();
 
             // Find the predictions for the location
-            url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
-                  "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin";
-            using (var httpClient = new HttpClient())
-            {
-                var json = httpClient.GetStringAsync(url).Result;
-
-                response = JsonNode.Parse(json)!;
-            }
-
+            var json = FindPredictions(latitude, longitude);
+            response = JsonNode.Parse(json)!;
             for (var i = 0; i < 7; i++)
             {
                 // When the date is the expected
@@ -64,6 +51,39 @@ public class Forecast
         }
 
         return "";
+    }
+
+    protected virtual DateTime Today()
+    {
+        return DateTime.Now;
+    }
+
+    protected virtual string FindPredictions(string latitude, string longitude)
+    {
+        string url;
+        var json = "";
+        url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
+              "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin";
+        using (var httpClient = new HttpClient())
+        {
+            json = httpClient.GetStringAsync(url).Result;
+        }
+
+        return json;
+    }
+
+    protected virtual string FindLatitudeAndLongitude(string city)
+    {
+        var url = "https://positionstack.com/geo_api.php?query=" + city;
+        string response;
+        using (var httpClient = new HttpClient())
+        {
+            var json = httpClient.GetStringAsync(url).Result;
+
+            response = json;
+        }
+
+        return response;
     }
 
     private string CodeToText(int weatherCode)
