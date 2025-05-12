@@ -5,8 +5,11 @@ class UsersStaticWebPageGenerator
 {
     public void generateFile(List<User> users)
     {
+        string basePath = AppContext.BaseDirectory;
+        string projectRoot = Path.GetFullPath(Path.Combine(basePath, @"../../../../.."));
+        string filePath = Path.Combine(projectRoot, "html", "users.html");
         // save resulting static html page
-        StreamWriter fileWriter = new StreamWriter("./html/users.html", false);
+        StreamWriter fileWriter = new StreamWriter(filePath, false);
         fileWriter.WriteLine("<!doctype html>");
         fileWriter.WriteLine("<html lang=\"en\">");
         fileWriter.WriteLine("<head>");
