@@ -20,12 +20,9 @@ public class Forecast
             // Find the latitude and longitude to get the prediction
             var url = "https://positionstack.com/geo_api.php?query=" + city;
             JsonNode response;
-            using (var httpClient = new HttpClient())
-            {
-                var json = httpClient.GetStringAsync(url).Result;
-
-                response = JsonNode.Parse(json)!;
-            }
+            using var httpClient = new HttpClient();
+            var positionResponse= httpClient.GetStringAsync(url).Result;
+            response = JsonNode.Parse(positionResponse)!;
 
             var latitude = response!["data"]![0]!["latitude"]!.ToString();
             var longitude = response!["data"]![0]!["longitude"]!.ToString();
@@ -33,12 +30,9 @@ public class Forecast
             // Find the predictions for the location
             url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
                   "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin";
-            using (var httpClient = new HttpClient())
-            {
-                var json = httpClient.GetStringAsync(url).Result;
-
-                response = JsonNode.Parse(json)!;
-            }
+            using var httpClient2 = new HttpClient();
+            var json = httpClient2.GetStringAsync(url).Result;
+            response = JsonNode.Parse(json)!;
 
             for (var i = 0; i < 7; i++)
             {
