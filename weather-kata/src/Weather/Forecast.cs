@@ -18,19 +18,19 @@ public class Forecast
         if (dateTime.Value.CompareTo(DateTime.Today.AddDays(6)) < 0)
         {
             // Find the latitude and longitude to get the prediction
-            var url = "https://positionstack.com/geo_api.php?query=" + city;
+            var positionStackUrl = "https://positionstack.com/geo_api.php?query=" + city;
             using var httpClient = new HttpClient();
-            var positionResponse= httpClient.GetStringAsync(url).Result;
+            var positionResponse= httpClient.GetStringAsync(positionStakUrl).Result;
             var response = JsonNode.Parse(positionResponse)!;
 
             var latitude = response!["data"]![0]!["latitude"]!.ToString();
             var longitude = response!["data"]![0]!["longitude"]!.ToString();
 
             // Find the predictions for the location
-            url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
+            var openMeteoUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
                   "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin";
             using var httpClient2 = new HttpClient();
-            var json = httpClient2.GetStringAsync(url).Result;
+            var json = httpClient2.GetStringAsync(openMeteoUrl).Result;
             var predictionResponse = JsonNode.Parse(json)!;
 
             for (var i = 0; i < 7; i++)
