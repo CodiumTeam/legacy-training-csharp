@@ -19,10 +19,9 @@ public class Forecast
         {
             // Find the latitude and longitude to get the prediction
             var url = "https://positionstack.com/geo_api.php?query=" + city;
-            JsonNode response;
             using var httpClient = new HttpClient();
             var positionResponse= httpClient.GetStringAsync(url).Result;
-            response = JsonNode.Parse(positionResponse)!;
+            var response = JsonNode.Parse(positionResponse)!;
 
             var latitude = response!["data"]![0]!["latitude"]!.ToString();
             var longitude = response!["data"]![0]!["longitude"]!.ToString();
@@ -32,21 +31,21 @@ public class Forecast
                   "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin";
             using var httpClient2 = new HttpClient();
             var json = httpClient2.GetStringAsync(url).Result;
-            response = JsonNode.Parse(json)!;
+            var predictionResponse = JsonNode.Parse(json)!;
 
             for (var i = 0; i < 7; i++)
             {
                 // When the date is the expected
-                if (format.Equals(response!["daily"]!["time"]![i]!.ToString()))
+                if (format.Equals(predictionResponse!["daily"]!["time"]![i]!.ToString()))
                 {
                     // If we have to return the wind information
                     if (wind)
                     {
-                        return response!["daily"]!["windspeed_10m_max"]![i]!.ToString();
+                        return predictionResponse!["daily"]!["windspeed_10m_max"]![i]!.ToString();
                     }
                     else
                     {
-                        var code = (int) response!["daily"]!["weathercode"]![i]!.GetValue<float>();
+                        var code = (int) predictionResponse!["daily"]!["weathercode"]![i]!.GetValue<float>();
                         return CodeToText(code);
                     }
                 }
