@@ -20,7 +20,7 @@ public class Forecast
             // Find the latitude and longitude to get the prediction
             var positionStackUrl = "https://positionstack.com/geo_api.php?query=" + city;
             using var httpClient = new HttpClient();
-            var positionResponse= httpClient.GetStringAsync(positionStakUrl).Result;
+            var positionResponse= httpClient.GetStringAsync(positionStackUrl).Result;
             var response = JsonNode.Parse(positionResponse)!;
 
             var latitude = response!["data"]![0]!["latitude"]!.ToString();

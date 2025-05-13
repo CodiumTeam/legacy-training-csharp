@@ -10,7 +10,10 @@ public class WeatherTest
     [Fact]
     public void find_the_weather_of_today()
     {
-        new Forecast();
+        var forecast = new Forecast();
+        Console.WriteLine("Hola");
+
+        forecast.Predict("Barcelona", null, false);
 
         Assert.Equal("xxx", "xxx");
     }    
